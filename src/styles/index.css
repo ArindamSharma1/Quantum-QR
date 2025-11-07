@@ -1,0 +1,319 @@
+/* src/styles/index.css */
+:root {
+  --accent: #5c10da;
+  --bg-dark: rgba(0,0,0,0);
+  --text: #ffffff;
+  --muted: #b3b3b3;
+  --glass: rgba(255,255,255,0.04);
+  --radius:12px;
+  scroll-behavior: smooth;
+}
+
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: transparent;
+  scroll-behavior: smooth;
+}
+
+/* This sets the highlight color for most browsers */
+::selection {
+  background-color: var(--accent); /* Your accent color */
+  color: #ffffff;           /* A dark color for contrast */
+}
+
+/* This is the same, but specifically for Firefox */
+::-moz-selection {
+  background-color: var(--accent); /* Your accent color */
+  color: #0d001f;           /* A dark color for contrast */
+}
+
+/* container */
+.app{
+  width:100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  color:white;
+  background: transparent; /* <-- this is important */
+  position: relative;
+  z-index: 10;  /* <-- brings content above canvas */
+}
+
+
+/* card */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* form styles */
+.form-row{margin-bottom:12px}
+.label{font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+.input, .select, .textarea{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:none;
+  background:var(--glass);
+  color:var(--text);
+  font-size:0.95rem;
+  outline: none;
+}
+.textarea{min-height:120px; resize:vertical}
+
+/* buttons */
+.btn{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn-primary{ background:var(--accent); color:white; }
+.btn-ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.04);}
+
+/* preview */
+.preview{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.qr-img{
+  width:300px;
+  height:300px;
+  border-radius:8px;
+  background:#fff; /* fallback while loading */
+  display:block;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+}
+
+/* small */
+.small{font-size:0.85rem;color:var(--muted)}
+
+/* responsive */
+@media (max-width:900px){
+  .app{grid-template-columns:1fr; padding:10px;}
+  .qr-img{width:240px;height:240px}
+}
+
+
+.background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;  /* behind all UI cards */
+  pointer-events: none;  /* so it doesn’t block clicks */
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* FORM styling */
+.qr-form {
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+  flex-wrap: wrap;
+}
+
+.qr-form select {
+  padding:12px 16px;
+  border:1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  border-radius:10px;
+  backdrop-filter: blur(12px);
+  transition:border 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.qr-form select:focus {
+  border-color: var(--accent);
+}
+
+/* dropdown menu items */
+.qr-form select option {
+  background: #ffffff;
+  color: #000000;
+  padding: 8px;
+}
+
+.qr-form select option:checked {
+  background: var(--accent);
+  color: #000000;
+}
+.qr-form input {
+  padding:12px 16px;
+  border:1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  color:var(--text);
+  border-radius:10px;
+  backdrop-filter: blur(12px);
+  transition: border 0.2s ease;
+  /* width:260px; */
+  flex-grow: 1;
+  min-width: 150px;
+}
+
+.qr-form input:focus {
+  border-color: var(--accent);
+}
+
+.qr-form button {
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background-color:var(--accent);
+  color:rgb(255, 255, 255);
+  font-weight:600;
+  cursor:pointer;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.qr-form button:hover {
+  opacity: 0.8;
+  background-color: initial;
+  background-position: 0 0;
+  border: 1px solid var(--accent);
+}
+
+.heading-text {
+  font-size: 50px;
+  font-weight: 600;
+  margin-top: 20rem;
+  margin-bottom: 10rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.3s forwards;
+}
+.hassle-free {
+  color: var(--accent);
+}
+
+.scroll-down-arrow {
+  display: block;
+  width: 20px; /* Arrow size */
+  height: 20px; /* Arrow size */
+  margin: 1.5rem auto 0; /* 2rem space below title, centered */
+  border: 3px solid rgba(255, 255, 255, 0.7); /* Arrow color */
+  
+  
+  /*chevron shape */
+  border-width: 0 3px 3px 0; 
+  
+  transform: rotate(45deg);
+  animation: bounce 2s infinite;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.5s forwards, bounce 2s infinite 0.5s;
+}
+
+/* 3. The bouncing animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  40% {
+    transform: translateY(10px) rotate(45deg);
+  }
+  60% {
+    transform: translateY(5px) rotate(45deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================== */
+/* == RESPONSIVE STYLES START HERE == */
+/* =================================== */
+
+/* For Tablets and Small Desktops */
+@media (max-width: 900px) {
+  body {
+    padding: 20px; /* Less padding */
+  }
+
+  .heading-text {
+    font-size: 42px; /* Slightly smaller text */
+    margin-top: 15rem; /* Less top margin */
+    margin-bottom: 8rem; /* Less bottom margin */
+  }
+
+  .qr-img {
+    width: 240px; /* Smaller QR code */
+    height: 240px;
+  }
+}
+
+/* For Mobile Phones */
+@media (max-width: 600px) {
+  body {
+    padding: 15px; /* Even less padding */
+  }
+
+  .heading-text {
+    font-size: 32px; /* Much smaller text */
+    margin-top: 8rem; /* Much less top margin */
+    margin-bottom: 4rem; /* Much less bottom margin */
+  }
+
+  .card {
+    padding: 15px; /* Less padding on card */
+  }
+
+  .qr-form {
+    flex-direction: column; /* Stack form elements vertically */
+  }
+
+  .qr-form input,
+  .qr-form select,
+  .qr-form button {
+    width: 100%; /* Make all form elements full-width */
+  }
+
+  .qr-img {
+    width: 100%; /* Make image responsive */
+    max-width: 240px; /* Limit max size */
+    height: auto; /* Maintain aspect ratio */
+    aspect-ratio: 1 / 1;
+  }
+}
