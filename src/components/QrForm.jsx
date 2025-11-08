@@ -1,43 +1,37 @@
 import React, { useState } from "react";
 
 export default function QrForm({ onGenerate }) {
-  const [text, setText] = useState("");
-  const [size, setSize] = useState(300);
-  const [ecc, setEcc] = useState("L");
+  const [mode, setMode] = useState("text");
+  const [data, setData] = useState("");
 
   function handleSubmit(e){
     e.preventDefault();
-    if(!text.trim()) return;
-    
-    onGenerate({
-      data: text,
-      size: Number(size),
-      ecc
-    });
+    onGenerate({ data, mode });
   }
 
-  return(
+  return (
     <form onSubmit={handleSubmit} className="qr-form">
-      <input
-        placeholder="Enter link or text..."
-        value={text}
-        onChange={(e)=>setText(e.target.value)}
-      />
-  
-      <select value={size} onChange={(e)=>setSize(e.target.value)}>
-        <option value="200" style={{ color: "black"}}>200px</option>
-        <option value="300">300px</option>
-        <option value="400">400px</option>
+
+      <select value={mode} onChange={e=>setMode(e.target.value)}>
+        <option value="text">Text / Link</option>
+        <option value="wifi">Wi-Fi</option>
+        <option value="contact">Contact</option>
       </select>
 
-      <select value={ecc} onChange={(e)=>setEcc(e.target.value)}>
-        <option value="L">L (low)</option>
-        <option value="M">M (medium)</option>
-        <option value="Q">Q (quality)</option>
-        <option value="H">H (high)</option>
-      </select>
+      <input
+        type="text"
+        placeholder={
+          mode === "text" 
+          ? "Enter text or URL" 
+          : mode === "wifi"
+          ? "WiFi SSID|PASSWORD|WEP/WPA"
+          : "Name|Phone|Email"
+        }
+        value={data}
+        onChange={(e)=>setData(e.target.value)}
+      />
 
       <button type="submit">Generate QR</button>
     </form>
-  )
+  );
 }

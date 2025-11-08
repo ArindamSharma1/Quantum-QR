@@ -3,18 +3,18 @@ import React, { useState } from 'react';
 import QrForm from './components/QrForm';
 import DarkVeil from './components/DarkVeil.jsx';
 import QrPreview from './components/QrPreview';
-import { googleQrUrl } from './qr.js';
+import { goQrUrl } from './qr.js';
 import './styles/index.css';
 import GooeyNav from './components/GooeyNav.jsx';
 
 export default function App(){
   const [qrUrl, setQrUrl] = useState(null);
 
-  function handleGenerate(params){
-    if(!params) { setQrUrl(null); return; }
-    const url = googleQrUrl(params);
-    setQrUrl(url);
-  }
+function handleGenerate(params){
+  if(!params) return setQrUrl(null);
+  setQrUrl( goQrUrl(params) );
+  
+}
 
   async function handleDownload(url){
     try {
@@ -32,15 +32,22 @@ export default function App(){
       console.error('download failed', err);
     }
   }
+  function handleReset(){
+  setQrUrl(null);
+}
+
 
   const items = [
     { label: "Github", href: "https://github.com/ArindamSharma1", target: "_blank" },
-    { label: "About", href: "#" },
+    { label: "About", href: "https://www.linkedin.com/in/arindam-sharma-ab4712251/" },
     { label: "Contact", href: "https://linktr.ee/arindam_sharma" },
   ];
 
   return (
+    
     <>
+
+
       <div style={{
         width:"100%",
         height:"100%",
@@ -51,7 +58,6 @@ export default function App(){
       }}>
         <DarkVeil />
       </div>
-
 
       {/* Add your GooeyNav here */}
       <div style={{ height: '100px', position: 'relative', padding: '20px' }}>
@@ -80,9 +86,11 @@ export default function App(){
         </div>
 
         <div>
-          <QrPreview qrUrl={qrUrl} onDownload={handleDownload} />
+          <QrPreview qrUrl={qrUrl} onDownload={handleDownload} onReset={handleReset} />
+
         </div>
       </div>
+      
     </>
   );
 }
