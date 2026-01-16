@@ -1,16 +1,30 @@
-# React + Vite
+# Quantum QR ⚡
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Zero-Latency, Client-Side QR Code Engine**
+*High-performance generation running entirely in the browser.*
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📖 About
+Quantum QR is a lightweight, privacy-focused QR code generator built for speed. Unlike traditional generators that rely on server-side processing, Quantum QR performs all rendering logic on the client side using the HTML5 Canvas API. This architecture ensures **instant feedback (sub-100ms)** and guarantees that user data never leaves the browser.
 
-## React Compiler
+### ⚙️ Engineering Highlights
+* **Canvas API Rendering:** Implemented low-level canvas manipulation to render QR matrices in real-time without layout thrashing.
+* **Client-Side Architecture:** Removed backend dependencies completely, resulting in zero API latency and full offline functionality.
+* **Dynamic Customization Engine:** Built a reactive state model that instantly updates QR colors, sizes, and error correction levels as the user types.
+* **High-Fidelity Export:** Engineered a seamless export pipeline allowing users to download production-ready assets without pixelation artifacts.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛠️ Tech Stack
+* **Framework:** React.js / Vite
+* **Core Logic:** HTML5 Canvas API, JavaScript (ES6+)
+* **Styling:** CSS3 / Tailwind
+* **Performance:** Client-side computation (Zero Backend)
 
-## Expanding the ESLint configuration
+### 🚀 Key Features
+* ⚡ **Instant Preview:** Real-time generation as you type.
+* 🎨 **Full Customization:** Control over foreground/background colors and styles.
+* 🔒 **Privacy First:** Data is processed locally; no server tracking.
+* 📦 **Universal Export:** Download as high-quality image formats.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+[View Live Demo](https://quantum-qr-gold.vercel.app/) • [Report Bug](mailto:arindamsharma603@gmail.com)
